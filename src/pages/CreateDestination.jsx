@@ -1,11 +1,14 @@
 function CreateDestination() {
+
+    
+
     return (
-        <main>
+        <main className='flex flex-col gap-5 w-full'>
             <h1 className="text-3xl font-semibold">Crear destino</h1>
             <main className='flex flex-row justify-center items-center h-full min-h-[90vh] w-full'>
-                <form className="[box-shadow:rgba(0,_0,_0,_0.16)_0px_3px_6px,_rgba(0,_0,_0,_0.23)_0px_3px_6px] h-full min-h-[405px] bg-[--var-light] flex gap-5 p-5 rounded-lg" action="">
-                    <section>
-                        <label htmlFor="input-file" id="drop-area">
+                <form className="[box-shadow:rgba(0,_0,_0,_0.16)_0px_3px_6px,_rgba(0,_0,_0,_0.23)_0px_3px_6px] h-full bg-[--var-light] flex gap-6 p-5 rounded-lg" action="">
+                    <section className="flex flex-col gap-3">
+                        <label htmlFor="input-file" id="drop-area" className="flex-grow">
                             <input type="file" id="input-file" name="input-file" accept=".png" hidden />
                                 <div className="img-view w-[365px] h-full border-2 border-black border-dashed rounded-2xl flex justify-center items-center flex-col gap-3 bg-gray-100 transition-all duration-200 ease-linear"> 
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-blue-600" viewBox="0 0 24 24">
@@ -14,52 +17,59 @@ function CreateDestination() {
                                 <p>Arrastra una imagen</p>
                             </div>
                         </label>
+                        <div>
+                            <label htmlFor="description">Descripción</label>
+                            <textarea type="text" id='description' name='description' placeholder='Ingresa una descripción del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        </div> 
+                        <div>
+                            <label htmlFor="more-info">+ Informacion</label>
+                            <textarea type="text" id='more-info' name='more-info' placeholder='Ingresa informacion adicional de lo que tenga el destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        </div> 
                     </section>
-                    <section>
+                    <section className="flex flex-col gap-2">
+                        <h2 className="font-medium">Ubicación</h2>
                         <div className='flex flex-row gap-2'>
                             <div className='flex-1'>
-                                <label htmlFor="name">Nombre(s)</label>
-                                <input type="text" id='name' name='name' placeholder='Ingresa su(s) nombre(s)' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                                <label htmlFor="country">País</label>
+                                <input type="text" id='country' name='country' placeholder='Ingresa el país' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                             </div>
                             <div className='flex-1'>
-                                <label htmlFor="lastname">Apellido(s)</label>
-                                <input type="text" id='lastname' name='lastname' placeholder='Ingresa su(s) apellido(s)' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                                <label htmlFor="city">Ciudad</label>
+                                <input type="text" id='city' name='city' placeholder='Ingresa la ciudad' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                            </div>
+                        </div>
+                        <h2 className="font-medium">Hospedaje</h2>
+                        <div className='flex flex-row gap-2'>
+                            <div className='flex-1'>
+                                <label htmlFor="days">Dia(s)</label>
+                                <input type="number" id='days' name='days' placeholder='Ingresa los dias de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                            </div>
+                            <div className='flex-1'>
+                                <label htmlFor="nights">Noche(s)</label>
+                                <input type="text" id='nights' name='nights' placeholder='Ingresa las noches de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                             </div>
                         </div>
                         <div className='flex flex-row gap-2'>
-                            <div className='flex-1'>
-                                <label htmlFor="name">Nombre(s)</label>
-                                <input type="text" id='name' name='name' placeholder='Ingresa su(s) nombre(s)' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                            <div>
+                                <label htmlFor="tickets">Tickets de avion</label>
+                                <select name="tickets" id="tickets" className="w-full mt-1 p-2 border border-gray-300 rounded-md">
+                                    <option value="ida-vuelta">Ida - Vuelta</option>
+                                    <option value="ida">Solo ida</option>
+                                </select>
                             </div>
-                            <div className='flex-1'>
-                                <label htmlFor="lastname">Apellido(s)</label>
-                                <input type="text" id='lastname' name='lastname' placeholder='Ingresa su(s) apellido(s)' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                            <div>
+                                <label htmlFor="price">Precio</label>
+                                <input type="number" id='price' name='price' placeholder='Ingresa el precio x persona' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                            <label htmlFor="name">Nombre destino</label>
+                            <input type="text" id='name' name='name' placeholder='Ingresa el nombre del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                         </div>
                         <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Correo electrónico</label>
-                            <input type="email" id='email' name='email' placeholder='Ingresa su correo electronico' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                        </div>
+                            <label htmlFor="hotel">Hotel</label>
+                            <input type="text" id='hotel' name='hotel' placeholder='Ingresa el nombre del hotel' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        </div>   
                     </section>
                 </form>
             </main>

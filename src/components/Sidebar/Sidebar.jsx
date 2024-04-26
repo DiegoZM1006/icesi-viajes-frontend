@@ -27,7 +27,9 @@ function Sidebar() {
                 <p>Administrador</p>
                 <hr className='w-full h-[2px] m-2 mx-auto border-0 rounded bg-white'/>
                 <p className='mb-5'>Jhon Doe</p>
-                <Button description='Cerrar sesión' image={<IconDashboard />}/>
+                <Link className='w-full' to='/'>
+                    <Button description='Cerrar sesión' image={<IconDashboard />}/>
+                </Link>
             </section>
         </aside>
     )

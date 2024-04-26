@@ -23,7 +23,9 @@ function App() {
                 <label htmlFor="remember" className='font-thin'>Recordar sesión</label>
                 <input type="checkbox" id='remember' name='remember' className='w-4 h-4' />
               </div>
-              <button type="submit" className='w-full p-2 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]'>Iniciar sesión</button>
+              <Link to='/dashboard'>
+                <button type="submit" className='w-full p-2 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]'>Iniciar sesión</button>
+              </Link>
             </form>
             <p className='w-full text-end'>¿No tienes cuenta?
               <Link to='/register'> <span className='und underline text-[--var-dark-shades]'>registrate</span></Link>

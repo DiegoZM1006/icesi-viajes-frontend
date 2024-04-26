@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import IconDashboard from '../Icons/IconDashboard'; 
+// import ButtonModal from '../ButtonModal';
 
 function CardCatalogue(props) {
     return(
@@ -12,6 +13,7 @@ function CardCatalogue(props) {
                 </div>
                 <div className='w-full bg-[--var-dark-50] flex justify-between px-2 py-2 items-center'>
                     <p>{props.rating}</p>
+                    {/* <ButtonModal /> */}
                     <button className='bg-[--var-dark-shades] text-white px-3 py-[1px] rounded'>Ver más</button>
                 </div>
                 <div>
