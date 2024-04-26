@@ -6,7 +6,7 @@ function Layout() {
         <section className='flex flex-row'>
             <Sidebar />
             <main className='ml-[--var-width-sidebar] py-5 px-10 bg-[--var-white] w-full min-h-screen h-full'>
-                <Outlet />
+                <Outlet></Outlet>
             </main>
         </section>
     )

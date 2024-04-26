@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 function Register() {
   return (
-    <main className='w-full h-screen bg-[--var-dark-shades] flex justify-center items-center'>
-      <section className='w-[90%] h-[90%] max-w-[1240px] max-h-[824px] bg-[--var-light] flex rounded-lg overflow-hidden [box-shadow:0px_0px_15px_0px_rgba(0,_0,_0,_0.50)]'>
+    <main className='w-full min-h-screen bg-[--var-dark-shades] flex justify-center items-center p-10'>
+      <section className='w-[90%] h-[90%] max-w-[1240px] max-h-[750px] bg-[--var-light] flex rounded-lg overflow-hidden [box-shadow:0px_0px_15px_0px_rgba(0,_0,_0,_0.50)]'>
         <img className='w-2/3 h-full object-cover' src={image} alt="Un hombre atiende a unos clientes en una agencia de viajes" />
         <article className='flex flex-col justify-center items-center w-1/3 h-full p-5'>
           <div className='flex flex-col gap-6'>
