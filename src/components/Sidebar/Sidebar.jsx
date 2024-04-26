@@ -1,5 +1,6 @@
 import Button from './ButtonSidebar';
 import IconDashboard from '../Icons/IconDashboard';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
 
@@ -12,8 +13,12 @@ function Sidebar() {
                 <hr className='w-full h-[2px] mt-2 mx-auto border-0 rounded bg-white'/>
             </section>
             <section className='flex flex-col justify-start gap-5'>
-                {btnActive('/dashboard') ? <Button description='Panel de control' image={<IconDashboard />} active={true}/> : <Button description='Panel de control' image={<IconDashboard />} active={false}/>}
-                {btnActive('/catalogo') ? <Button description='Catálogo' image={<IconDashboard />} active={true}/> : <Button description='Catálogo' image={<IconDashboard />} active={false}/>}
+                <Link to='/dashboard'>
+                    {btnActive('/dashboard') ? <Button description='Panel de control' image={<IconDashboard />} active={true}/> : <Button description='Panel de control' image={<IconDashboard />} active={false}/>}
+                </Link>
+                <Link to={'/catalogue'}>
+                    {btnActive('/catalogue') ? <Button description='Catálogo' image={<IconDashboard />} active={true}/> : <Button description='Catálogo' image={<IconDashboard />} active={false}/>}
+                </Link>
                 {btnActive('/reservas') ? <Button description='Reservas - Ventas' image={<IconDashboard />} active={true}/> : <Button description='Reservas - Ventas' image={<IconDashboard />} active={false}/> }
                 {btnActive('/clientes') ? <Button description='Adminstrar Clientes' image={<IconDashboard />} active={true}/> : <Button description='Adminstrar Clientes' image={<IconDashboard />} active={false}/> }
                 {btnActive('/empleados') ? <Button description='Administra Empleados' image={<IconDashboard />} active={true}/> : <Button description='Adminstrar Empleados' image={<IconDashboard />} active={false}/> }

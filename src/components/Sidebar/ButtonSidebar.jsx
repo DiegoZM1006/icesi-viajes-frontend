@@ -15,7 +15,7 @@ function ButtonSidebar(props) {
 ButtonSidebar.propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.element.isRequired,
-  active: PropTypes.bool.isRequired
+  active: PropTypes.bool
 };
 
 export default ButtonSidebar;

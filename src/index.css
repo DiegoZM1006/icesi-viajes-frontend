@@ -5,7 +5,9 @@
 :root {
   --var-light: #FFFFFF;
   --var-dark: #000000;
+  --var-dark-50: rgba(0, 0, 0, 0.5);
 
+  --var-danger-75: rgba(236, 16, 16, 0.75);
   --var-white: #F5F7F9;
   --var-main-color: #343a40;
   --var-dark-shades: #24639C;
