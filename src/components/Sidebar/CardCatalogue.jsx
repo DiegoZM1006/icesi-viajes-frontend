@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import IconDashboard from '../Icons/IconDashboard'; 
-// import ButtonModal from '../ButtonModal';
+import ButtonModal from '../Catalogue/ButtonModal';
+import { Rating } from 'react-simple-star-rating'
 
 function CardCatalogue(props) {
     return(
@@ -11,14 +12,13 @@ function CardCatalogue(props) {
                     <h2>{props.name}</h2>
                     <p>{props.description}</p>
                 </div>
-                <div className='w-full bg-[--var-dark-50] flex justify-between px-2 py-2 items-center'>
-                    <p>{props.rating}</p>
-                    {/* <ButtonModal /> */}
-                    <button className='bg-[--var-dark-shades] text-white px-3 py-[1px] rounded'>Ver más</button>
+                <div className='w-full flex justify-between px-2 py-2 items-center'>
+                    <Rating size={32} readonly allowFraction initialValue={props.rating} />
+                    {/* <p>{props.rating}</p> */}
+                    <ButtonModal />
+                    {/* <button className='bg-[--var-dark-shades] text-white px-3 py-[1px] rounded'>Ver más</button> */}
                 </div>
-                <div>
                     <button className='absolute w-12 h-12 -mt-5 -mr-5 right-0 top-0 bg-[--var-danger-75] rounded-full flex justify-center items-center'><IconDashboard /></button>
-                </div>
             </article>
         </section>
     )

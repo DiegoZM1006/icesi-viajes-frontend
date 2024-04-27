@@ -6,7 +6,9 @@
   --var-light: #FFFFFF;
   --var-dark: #000000;
   --var-dark-50: rgba(0, 0, 0, 0.5);
-
+  --var-dark-75: rgba(0, 0, 0, 0.75);
+  --var-danger: rgba(236, 16, 16);
+  --var-success: #00843D;
   --var-danger-75: rgba(236, 16, 16, 0.75);
   --var-white: #F5F7F9;
   --var-main-color: #343a40;
@@ -22,5 +24,8 @@
 
 button {
   transition: all 0.3s ease;
+}
 
+svg {
+  display: inline-block;
 }
