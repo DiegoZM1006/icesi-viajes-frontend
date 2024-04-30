@@ -19,9 +19,9 @@ function ButtonModal() {
             <div
               className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
             >
-              <div className="relative w-auto my-6 mx-auto max-w-4xl">
+              <div className="relative w-auto my-6 pt-8 mx-auto h-auto">
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[--var-white] outline-none focus:outline-none">
+                <div className="max-w-4xl max-h-screen h-auto overflow-hidden overflow-y-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[--var-white] outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between border-b border-solid border-blueGray-200 rounded-t text-white bg-[url('/Image-bg.png')] bg-no-repeat bg-fixed bg-contain bg-center">
                     <h3 className="text-3xl font-semibold bg-[--var-dark-75] mt-5 px-5 rounded-r-xl py-1">
