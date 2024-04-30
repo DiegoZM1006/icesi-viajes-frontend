@@ -94,7 +94,7 @@ function Catalogue() {
             </section>
             <section className="flex flex-row flex-wrap gap-10 w-full justify-around mt-5">
                 {data.map((item, index) => (
-                    <CardCatalogue key={index} name={item.name} description={item.description} rating={item.stars} />
+                    <CardCatalogue key={index} name={item.name} description={item.description} rating={item.stars} deleteMode />
                 ))}
             </section>
         </main>

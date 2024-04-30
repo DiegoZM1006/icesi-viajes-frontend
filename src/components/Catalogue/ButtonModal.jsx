@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Comment from "./Comment";
+import { Link } from "react-router-dom";
 
 function ButtonModal() {
     const [showModal, setShowModal] = useState(false);
@@ -38,14 +39,6 @@ function ButtonModal() {
                       <p className="text-sm">+ Informacion: Las instalaciones de piscinas son gratuitas, el desayuno y almuerzo esta incluido.</p>
                       <p className="text-sm">desde <br /> <span className="text-lg">$ 3.500.000 COP/Persona</span></p>
                     </article>
-                    {/* <button
-                      className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                      onClick={() => setShowModal(false)}
-                    >
-                      <span className="bg-transparent text-red-500 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                        ×
-                      </span>
-                    </button> */}
                   </div>
                   {/*body*/}
                   <article className="relative flex flex-auto justify-between p-5 gap-5">
@@ -57,29 +50,30 @@ function ButtonModal() {
                       </div>
                     </div>
                     <div className="flex w-2/3 flex-col gap-3 justify-start items-center max-h-[160px] overflow-y-auto">
-                      {/* <h2 className='text-xl font-semibold'>Comentarios</h2> */}
                       <Comment username={'Diego Mueses'} date={'01/01/2024'} rating={4.5} comment={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque adipisci est perferendis itaque.'} />
-                      <Comment username={'Diego Mueses'} date={'01/01/2024'} rating={4.5} comment={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque adipisci est perferendis itaque.'} />
-                      <Comment username={'Diego Mueses'} date={'01/01/2024'} rating={4.5} comment={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque adipisci est perferendis itaque.'} />
+                      <Comment username={'Diego Mueses'} date={'01/01/2024'} rating={1.5} comment={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque adipisci est perferendis itaque.'} />
+                      <Comment username={'Diego Mueses'} date={'01/01/2024'} rating={0.5} comment={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque adipisci est perferendis itaque.'} />
                     </div>
                   </article>
                   {/*footer*/}
-                  {/* <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                     <button
                       className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
                       onClick={() => setShowModal(false)}
                     >
-                      Close
+                      Cerrar
                     </button>
-                    <button
-                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Save Changes
-                    </button>
-                  </div> */}
+                    <Link to='/catalogue/modify'>
+                      <button
+                        className="bg-[--var-dark-shades] text-white active:bg-[--var-hover-dark-shades] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Modificar
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

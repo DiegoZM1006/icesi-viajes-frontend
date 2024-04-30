@@ -9,16 +9,18 @@ function CardCatalogue(props) {
             <img className='rounded-tl-lg' src="./Image.png" alt="" width={130} height={125}/>
             <article className='flex flex-col'>
                 <div className='flex-grow py-1 px-2'>
-                    <h2>{props.name}</h2>
-                    <p>{props.description}</p>
+                    <h2 className='font-bold text-md'>{props.name}</h2>
+                    <p className='text-sm'>{props.description}</p>
                 </div>
                 <div className='w-full flex justify-between px-2 py-2 items-center'>
                     <Rating size={32} readonly allowFraction initialValue={props.rating} />
-                    {/* <p>{props.rating}</p> */}
                     <ButtonModal />
-                    {/* <button className='bg-[--var-dark-shades] text-white px-3 py-[1px] rounded'>Ver más</button> */}
                 </div>
-                    <button className='absolute w-12 h-12 -mt-5 -mr-5 right-0 top-0 bg-[--var-danger-75] rounded-full flex justify-center items-center'><IconDashboard /></button>
+                {props.deleteMode && 
+                    <button className='absolute w-12 h-12 -mt-5 -mr-5 right-0 top-0 bg-[--var-danger-75] rounded-full flex justify-center items-center'>
+                        <IconDashboard />
+                    </button>
+                }
             </article>
         </section>
     )
@@ -28,6 +30,7 @@ CardCatalogue.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
+    deleteMode: PropTypes.bool,
 }
 
 export default CardCatalogue;
