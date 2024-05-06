@@ -8,7 +8,7 @@ function Layout() {
     return (
         <section className='flex flex-row'>
             <Sidebar user={user} />
-            <main className='ml-[--var-width-sidebar] py-5 px-10 bg-[--var-white] w-full min-h-screen h-full'>
+            <main className='ml-[--var-width-sidebar] py-5 px-10 bg-[--var-white] w-full min-h-screen h-full overflow-hidden'>
                 <Outlet></Outlet>
             </main>
         </section>

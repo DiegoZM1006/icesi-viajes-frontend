@@ -14,19 +14,9 @@ function Form(props) {
                     <input value={props.lastname} type="text" id='lastname' name='lastname' placeholder='Escribe el apellido' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                 </div>
             </div>
-            <div className='flex flex-row gap-2'>
-                <div className="flex-1">
-                    <label htmlFor="rol">Rol</label>
-                    <select name="rol" id="rol" className="w-full mt-1 p-2 border border-gray-300 rounded-md">
-                        <option value="ida-vuelta">Administrador</option>
-                        <option value="ida">Agente</option>
-                        <option value="none">Viewer</option>
-                    </select>
-                </div>
-                <div className="flex-1">
-                    <label htmlFor="email">Correo electronico</label>
-                    <input value={props.email} type="email" id='email' name='email' placeholder='Escribe el email' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-                </div>
+            <div className="flex-1">
+                <label htmlFor="email">Correo electronico</label>
+                <input value={props.email} type="email" id='email' name='email' placeholder='Escribe el email' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
             </div>
             <div className='flex flex-row gap-2'>
                 <div className="flex-1">
