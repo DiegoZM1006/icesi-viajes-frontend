@@ -1,40 +1,59 @@
 import './index.css'
-import image from './assets/agente.jpg'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import Register from './pages/Register.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './pages/Layout.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import Catalogue from './pages/Catalogue.jsx'
+import CreateDestination from './pages/CreateDestination.jsx'
+import ModifyDestination from './pages/ModifyDestination.jsx'
+import AdminClients from './pages/AdminClients.jsx'
+import ModifyClient from './pages/ModifyClient.jsx'
+import CreateClient from './pages/CreateClient.jsx'
+import Login from './pages/Login.jsx'
+import PrivateRoute from './utils/PrivateRoute.jsx'
 
 function App() {
+
+  const auth = JSON.parse(localStorage.getItem('user'));
+  console.log(auth);
+
   return (
-    <main className='w-full h-screen bg-[--var-dark-shades] flex justify-center items-center'>
-      <section className='w-[90%] h-[90%] max-w-[1240px] max-h-[750px] bg-[--var-light] flex rounded-lg overflow-hidden [box-shadow:0px_0px_15px_0px_rgba(0,_0,_0,_0.50)]'>
-        <article className='flex flex-col justify-center items-center w-1/3 h-full p-5'>
-          <div className='flex flex-col gap-6'>
-            <h1 className='text-4xl font-bold'>¡Bienvenido!</h1>
-            <h3>Por favor ingresa la información de tu cuenta.</h3>
-            <form action="" method='POST' className='flex flex-col gap-6'>
-              <div>
-                <label htmlFor="user">Usuario</label>
-                <input type="text" id='user' name='user' placeholder='Ingresa tu usuario' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-              </div>
-              <div>
-                <label htmlFor="password">Contraseña</label>
-                <input type="password" id='password' name='password' placeholder='Ingresa tu usuario' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
-              </div>
-              <div className='flex items-center justify-end gap-2'>
-                <label htmlFor="remember" className='font-thin'>Recordar sesión</label>
-                <input type="checkbox" id='remember' name='remember' className='w-4 h-4' />
-              </div>
-              <Link to='/dashboard'>
-                <button type="submit" className='w-full p-2 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]'>Iniciar sesión</button>
-              </Link>
-            </form>
-            <p className='w-full text-end'>¿No tienes cuenta?
-              <Link to='/register'> <span className='und underline text-[--var-dark-shades]'>registrate</span></Link>
-            </p>
-          </div>
-        </article>
-        <img className='w-2/3 h-full object-cover' src={image} alt="Un hombre atiende a unos clientes en una agencia de viajes" />
-      </section>
-    </main>
+    <>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            
+            <Route element={<PrivateRoute />}>
+              <Route path='/dashboard' element={<Layout />}>
+                <Route key={'dashboard'} index={true} element={<Dashboard />} />
+              </Route>
+              <Route path='/catalogue' element={<Layout />}>
+                <Route key={'catalogue'} index={true} element={<Catalogue />} />
+              </Route>
+              <Route path='/catalogue/create' element={<Layout />}>
+                <Route key={'createdestination'} index={true} element={<CreateDestination />} />
+              </Route>
+              <Route path='/catalogue/modify' element={<Layout />}>
+                <Route key={'modifydestination'} index={true} element={<ModifyDestination />} />
+              </Route>
+              <Route path='/clients' element={<Layout />}>
+                <Route key={'clients'} index={true} element={<AdminClients />} />
+              </Route>
+              <Route path='/clients/modify' element={<Layout />}>
+                <Route key={'modifyclient'} index={true} element={<ModifyClient />} />
+              </Route>
+              <Route path='/clients/create' element={<Layout />}>
+                <Route key={'createclient'} index={true} element={<CreateClient />} />
+              </Route>
+            </Route>
+
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </>
   )
 }
 

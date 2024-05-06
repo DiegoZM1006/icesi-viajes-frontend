@@ -2,8 +2,20 @@ import CardDashboard from '../components/Sidebar/CardDashboard';
 // eslint-disable-next-line no-unused-vars
 import Chart from 'chart.js/auto'
 import { Bar, PolarArea } from "react-chartjs-2";
+import { Navigate } from 'react-router-dom';
 
 function Dashboard() {
+
+    const auth = JSON.parse(localStorage.getItem('user'));
+
+    if (auth) {
+        const rol = auth.data.role;
+        if (rol !== 'ADMIN') {
+            return <Navigate to='/catalogue' />
+        } 
+    } else {
+        return <Navigate to='/' />
+    }
 
     return(
         <main className='flex flex-col gap-5'>

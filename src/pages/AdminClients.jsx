@@ -1,14 +1,16 @@
 import DataTable from 'react-data-table-component';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconDashboard from '../components/Icons/IconDashboard';
 import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
+import { allClients } from '../services/allClients';
 
 function AdminClients() {
+
   const columns = [
     {
       name: 'Codigo',
-      selector: row => row.code,
+      selector: row => row.id,
       sortable: true,
     },
     {
@@ -23,7 +25,7 @@ function AdminClients() {
     },
     {
       name: 'Cedula',
-      selector: row => row.card_id,
+      selector: row => row.card_number,
       sortable: true,
     },
     {
@@ -33,7 +35,7 @@ function AdminClients() {
     },
     {
       name: 'Telefono',
-      selector: row => row.phone,
+      selector: row => row.phone_number,
       sortable: true,
     },
     {
@@ -64,21 +66,18 @@ function AdminClients() {
       ),
     },
   ];
-  
-  const data = [
-    {
-      code: 1,
-      name: 'Juan',
-      lastname: 'Perez',
-      card_id: '123456789',
-      email: 'perez@gmail.com',
-      phone: '123456789',
-      username: 'juanperez',
-      password: 'juan123',
-    }
-  ];
 
-  const [records, setRecords] = useState(data);
+  const [data, setData] = useState([]);
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await allClients();
+      setData(fetchedData);
+      setRecords(fetchedData);
+    };
+    fetchData();
+  }, []);
 
   function handleRecords(event) {
     const inputValue = event.target.value.toLowerCase();
