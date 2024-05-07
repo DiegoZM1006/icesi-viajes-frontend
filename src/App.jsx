@@ -14,10 +14,6 @@ import Login from './pages/Login.jsx'
 import PrivateRoute from './utils/PrivateRoute.jsx'
 
 function App() {
-
-  const auth = JSON.parse(localStorage.getItem('user'));
-  console.log(auth);
-
   return (
     <>
       <React.StrictMode>
@@ -42,7 +38,7 @@ function App() {
               <Route path='/clients' element={<Layout />}>
                 <Route key={'clients'} index={true} element={<AdminClients />} />
               </Route>
-              <Route path='/clients/modify' element={<Layout />}>
+              <Route path='/clients/modify/:id' element={<Layout />}>
                 <Route key={'modifyclient'} index={true} element={<ModifyClient />} />
               </Route>
               <Route path='/clients/create' element={<Layout />}>

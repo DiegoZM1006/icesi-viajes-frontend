@@ -62,9 +62,9 @@ function AdminClients() {
     },
     {
       name: 'Acciones',
-      cell: () => (
+      cell: (row) => (
         <div className="flex justify-center gap-1">
-          <Link to='/clients/modify'>
+          <Link to={'/clients/modify/' + row.id}>
             <button className="bg-blue-500 text-white p-2 rounded"><IconDashboard /></button>
           </Link>
           <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button>

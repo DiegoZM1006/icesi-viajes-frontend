@@ -1,4 +1,4 @@
-import Form from "../components/Admin/Form";
+import FormCreateClient from "../components/Admin/FormCreateClient";
 import { Link } from "react-router-dom";
 
 function CreateClient() {
@@ -17,7 +17,7 @@ function CreateClient() {
                 <h1 className="text-3xl font-semibold">Crear cliente</h1>
             </section>
             <main className='flex flex-row justify-center items-center h-full min-h-[90vh] w-full'>
-                <Form />
+                <FormCreateClient />
             </main>
         </main>
     );
