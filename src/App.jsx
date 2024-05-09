@@ -12,6 +12,7 @@ import ModifyClient from './pages/ModifyClient.jsx'
 import CreateClient from './pages/CreateClient.jsx'
 import Login from './pages/Login.jsx'
 import PrivateRoute from './utils/PrivateRoute.jsx'
+import AdminEmployees from './pages/AdminEmployees.jsx'
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
               </Route>
               <Route path='/clients/create' element={<Layout />}>
                 <Route key={'createclient'} index={true} element={<CreateClient />} />
+              </Route>
+              <Route path='/employees' element={<Layout />}>
+                <Route key={'employees'} index={true} element={<AdminEmployees />} />
               </Route>
             </Route>
 
