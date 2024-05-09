@@ -4,6 +4,7 @@ import IconDashboard from '../components/Icons/IconDashboard';
 import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
 import { allClients } from '../services/allClients';
+import DeleteButton from '../components/Admin/DeleteButton';
 
 function AdminClients() {
 
@@ -67,7 +68,8 @@ function AdminClients() {
           <Link to={'/clients/modify/' + row.id}>
             <button className="bg-blue-500 text-white p-2 rounded"><IconDashboard /></button>
           </Link>
-          <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button>
+          {/* <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button> */}
+          <DeleteButton id={row.id} />
         </div>
       ),
     },
