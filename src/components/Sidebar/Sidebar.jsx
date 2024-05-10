@@ -43,7 +43,7 @@ function Sidebar(props) {
                             <Button description='Administrar Clientes' image={<IconDashboard />} active={btnActive('/clients')} />
                         </Link>
                         <Link to={'/employees'}>
-                            <Button description='Administrar Empleados' image={<IconDashboard />} active={btnActive('/empleados')} />
+                            <Button description='Administrar Empleados' image={<IconDashboard />} active={btnActive('/employees')} />
                         </Link>
                     </>
                 );

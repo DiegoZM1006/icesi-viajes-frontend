@@ -44,6 +44,12 @@ function AdminClients() {
       hide: 'lg'
     },
     {
+      name: 'Direccion',
+      selector: row => row.address,
+      sortable: true,
+      hide: 'lg'
+    },
+    {
       name: 'Usuario',
       selector: row => row.username,
       sortable: true,
