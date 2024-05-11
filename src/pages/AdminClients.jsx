@@ -4,7 +4,7 @@ import IconDashboard from '../components/Icons/IconDashboard';
 import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
 import { allClients } from '../services/allClients';
-import DeleteButton from '../components/Admin/DeleteButton';
+import DeleteButton from '../components/Admin/DeleteButtonClient';
 
 function AdminClients() {
 

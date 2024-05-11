@@ -14,6 +14,7 @@ import Login from './pages/Login.jsx'
 import PrivateRoute from './utils/PrivateRoute.jsx'
 import AdminEmployees from './pages/AdminEmployees.jsx'
 import CreateEmployee from './pages/CreateEmployee.jsx'
+import ModifyEmployee from './pages/ModifyEmployee.jsx'
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
               </Route>
               <Route path='/employees/create' element={<Layout />}>
                 <Route key={'createemployee'} index={true} element={<CreateEmployee />} />
+              </Route>
+              <Route path='/employees/modify/:id' element={<Layout />}>
+                <Route key={'modifyemployee'} index={true} element={<ModifyEmployee />} />
               </Route>
             </Route>
 

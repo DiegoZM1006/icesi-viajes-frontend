@@ -1,10 +1,10 @@
 import DataTable from 'react-data-table-component';
 import { useEffect, useState } from 'react';
-// import IconDashboard from '../components/Icons/IconDashboard';
+import IconDashboard from '../components/Icons/IconDashboard';
 import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
-import DeleteButton from '../components/Admin/DeleteButton';
 import { allEmployees } from '../services/allEmployees';
+import DeleteButtonEmployee from '../components/Admin/DeleteButtonEmployee';
 
 function AdminEmployees() {
 
@@ -76,11 +76,11 @@ function AdminEmployees() {
       name: 'Acciones',
       cell: (row) => (
         <div className="flex justify-center gap-1">
-          {/* <Link to={'/clients/modify/' + row.id}>
+          <Link to={'/employees/modify/' + row.id}>
             <button className="bg-blue-500 text-white p-2 rounded"><IconDashboard /></button>
-          </Link> */}
+          </Link>
           {/* <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button> */}
-          <DeleteButton id={row.id} />
+          <DeleteButtonEmployee id={row.id} />
         </div>
       ),
     },

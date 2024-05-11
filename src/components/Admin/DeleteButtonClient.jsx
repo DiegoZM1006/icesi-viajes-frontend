@@ -17,19 +17,27 @@ function DeleteButton({ id }) {
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminarlo!",
         preConfirm: () => {
-            const response = deleteClient(id) 
-            if (response.status === 200) {
-                Swal.fire(
-                    "Eliminado!",
-                    "El cliente ha sido eliminado.",
-                    "success"
-                )
-            } else {
-                Swal.showValidationMessage(
-                    `Ha surgido un error: ${response}`
-                )
-            }
-        }
+          deleteClient(id)
+              .then(response => {
+                  if (response === 'Usuario eliminado con éxito') {
+                      Swal.fire(
+                          "Eliminado!",
+                          "El cliente ha sido eliminado.",
+                          "success"
+                      );
+                  } else {
+                      Swal.showValidationMessage(
+                          `Ha surgido un error: ${response}`
+                      );
+                  }
+              })
+              .catch(error => {
+                  console.error(error);
+                  Swal.showValidationMessage(
+                      "Ha surgido un error al eliminar el cliente."
+                  );
+              });
+      }
     })
   }
 
@@ -41,7 +49,8 @@ function DeleteButton({ id }) {
 }
 
 DeleteButton.propTypes = { 
-    id: PropTypes.number.isRequired 
+    id: PropTypes.number.isRequired,
+    deleteFunction: PropTypes.func
 }
 
 export default DeleteButton;

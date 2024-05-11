@@ -1,8 +1,8 @@
 import axios from './axios'
 
-const UPDATE_CLIENT_URL = '/api/v1/clients/updateClient/'
+const UPDATE_EMPLOYEE_URL = '/api/v1/employees/updateEmployee/'
 
-export const updateClient = async (id, data, setErrors, setValid) => {
+export const updateEmployee = async (id, data, setErrors, setValid) => {
 
   let auth = JSON.parse(localStorage.getItem('user') || 'null');
     
@@ -14,7 +14,7 @@ export const updateClient = async (id, data, setErrors, setValid) => {
 
   try {
     const response = await axios.post(
-      UPDATE_CLIENT_URL + id, 
+      UPDATE_EMPLOYEE_URL + id, 
       data,
       config
     )
