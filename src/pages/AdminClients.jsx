@@ -18,19 +18,16 @@ function AdminClients() {
       name: 'Nombre(s)',
       selector: row => row.name,
       sortable: true,
-      hide: 'md'
     },
     {
       name: 'Apellido(s)',
       selector: row => row.lastname,
       sortable: true,
-      hide: 'md'
     },
     {
       name: 'Cedula',
       selector: row => row.card_number,
       sortable: true,
-      hide: 'lg'
     },
     {
       name: 'Correo',
@@ -41,25 +38,21 @@ function AdminClients() {
       name: 'Telefono',
       selector: row => row.phone_number,
       sortable: true,
-      hide: 'lg'
     },
     {
       name: 'Direccion',
       selector: row => row.address,
       sortable: true,
-      hide: 'lg'
     },
     {
       name: 'Usuario',
       selector: row => row.username,
       sortable: true,
-      hide: 'lg'
     },
     {
       name: 'Contraseña',
       selector: row => row.password,
       sortable: true,
-      hide: 'lg'
     },
     {
       name: 'Reservas',

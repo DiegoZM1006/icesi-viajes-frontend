@@ -1,5 +1,6 @@
 import CardCatalogue from "../components/Sidebar/CardCatalogue"
 import { Link } from 'react-router-dom';
+import image from '../assets/image-catalogue.jpg'
 
 const data = [
     {
@@ -91,6 +92,17 @@ function Catalogue() {
                 <Link to='/catalogue/create'>
                     <button className="py-2 px-4 bg-[--var-dark-shades] text-white rounded-md">Crear destino</button>
                 </Link>
+            </section>
+            <section className="h-auto">
+                <div className="h-[200px] bg-gray-200 p-4 rounded-md flex flex-col justify-center items-center gap-2 bg-cover bg-center text-white bg-blend-multiply" style={{ backgroundImage: `url(${image})` }}>
+                    <h3 className="text-xl font-semibold">Busca tus destinos soñados</h3>
+                    <p className="w-[500px] text-center">Organiza tus destinos soñados con nuestra selección de los mejores lugares, disponibles para ti en cualquier momento del día.</p>
+                </div>
+                <div className="-mt-10 p-4 rounded-md flex flex-col md:flex-row gap-4">
+                    <input type="text" placeholder="País" className="w-full p-2 border border-gray-300 rounded-md" />
+                    <input type="text" placeholder="Ciudad" className="w-full p-2 border border-gray-300 rounded-md" />
+                    <input type="text" placeholder="Precio" className="w-full p-2 border border-gray-300 rounded-md" />
+                </div>
             </section>
             <section className="flex flex-row flex-wrap gap-10 w-full justify-around mt-5">
                 {data.map((item, index) => (
