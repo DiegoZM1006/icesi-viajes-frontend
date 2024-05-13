@@ -4,12 +4,12 @@ import ButtonModal from '../Catalogue/ButtonModal';
 import { Rating } from 'react-simple-star-rating'
 
 function CardCatalogue(props) {
-    return(
-        <section className="w-full max-w-[450px] max-h-[125px] bg-[--var-light] rounded-lg [box-shadow:rgba(0,_0,_0,_0.16)_0px_3px_6px,_rgba(0,_0,_0,_0.23)_0px_3px_6px] flex relative">
+    return (
+        <section className="w-full max-w-[450px] h-[125px] bg-[--var-light] rounded-lg [box-shadow:rgba(0,_0,_0,_0.16)_0px_3px_6px,_rgba(0,_0,_0,_0.23)_0px_3px_6px] flex relative">
             <img className='rounded-l-lg' src={props.data.image} alt="" width={130} height={130}/>
             <article className='w-full flex flex-col'>
-                <div className='flex-grow py-1 px-2'>
-                    <h2 className='font-bold text-md'>{props.data.name}</h2>
+                <div className='flex-grow py-1 px-2 overflow-hidden'>
+                    <h2 className='font-bold text-md'>{props.data.city}, {props.data.country}.</h2>
                     <p className='text-sm'>{props.data.description}</p>
                 </div>
                 <div className='w-full flex justify-between px-2 py-2 items-center'>
@@ -23,7 +23,7 @@ function CardCatalogue(props) {
                 }
             </article>
         </section>
-    )
+    );
 }
 
 CardCatalogue.propTypes = {

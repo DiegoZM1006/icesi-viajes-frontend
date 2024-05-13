@@ -11,6 +11,8 @@ function Catalogue() {
     const [city, setCity] = useState("");
     const [price, setPrice] = useState("");
 
+    let auth = JSON.parse(localStorage.getItem('user') || 'null');
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -41,9 +43,12 @@ function Catalogue() {
         <main className='flex flex-col gap-5 w-full'>
             <section className="flex justify-between items-center">
                 <h1 className="text-3xl font-semibold">Catálogo</h1>
+                {
+                auth?.data.role === 'ADMIN' || auth?.data.role === 'AGENT' ? 
                 <Link to='/catalogue/create'>
                     <button className="py-2 px-4 bg-[--var-dark-shades] text-white rounded-md">Crear destino</button>
-                </Link>
+                </Link> : null
+                }
             </section>
             <section className="h-auto">
                 <div className="h-[200px] bg-gray-200 p-4 rounded-md flex flex-col justify-center items-center gap-2 bg-cover bg-center text-white bg-blend-multiply" style={{ backgroundImage: `url(${image})` }}>
@@ -58,7 +63,7 @@ function Catalogue() {
             </section>
             <section className="flex flex-row flex-wrap gap-10 w-full justify-around mt-5">
                 {filteredData.map((item) => (
-                    <CardCatalogue key={item.id} data={item} deleteMode />
+                    <CardCatalogue key={item.id} data={item} deleteMode={auth?.data.role === 'ADMIN' || auth?.role === 'AGENT'} />
                 ))}
             </section>
         </main>
