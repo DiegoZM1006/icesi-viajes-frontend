@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import allDestinations from "../services/allDestinations";
 
 function Catalogue() {
-
-    const [data, setData] = useState()
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
+    const [price, setPrice] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,13 +17,25 @@ function Catalogue() {
                 const response = await allDestinations();
                 setData(response);
             } catch (error) {
-                setData('Ha ocurrido un error');
+                setData([]);
             }
         };
 
         fetchData(); 
-
     }, []);
+
+    useEffect(() => {
+        // Filter the data based on the inputs
+        const filtered = data.filter(item => {
+            const countryMatch = item.country.toLowerCase().includes(country.toLowerCase());
+            const cityMatch = item.city.toLowerCase().includes(city.toLowerCase());
+            const priceMatch = item.price.toString().includes(price);
+
+            return countryMatch && cityMatch && priceMatch;
+        });
+
+        setFilteredData(filtered);
+    }, [data, country, city, price]);
 
     return (
         <main className='flex flex-col gap-5 w-full'>
@@ -36,14 +51,14 @@ function Catalogue() {
                     <p className="w-[500px] text-center">Organiza tus destinos con nuestra selección de los mejores lugares, disponibles para ti en cualquier momento del día.</p>
                 </div>
                 <div className="-mt-10 p-4 rounded-md flex flex-col md:flex-row gap-4">
-                    <input type="text" placeholder="País" className="w-full p-2 border border-gray-300 rounded-md" />
-                    <input type="text" placeholder="Ciudad" className="w-full p-2 border border-gray-300 rounded-md" />
-                    <input type="text" placeholder="Precio" className="w-full p-2 border border-gray-300 rounded-md" />
+                    <input type="text" placeholder="País" className="w-full p-2 border border-gray-300 rounded-md" value={country} onChange={e => setCountry(e.target.value)} />
+                    <input type="text" placeholder="Ciudad" className="w-full p-2 border border-gray-300 rounded-md" value={city} onChange={e => setCity(e.target.value)} />
+                    <input type="text" placeholder="Precio" className="w-full p-2 border border-gray-300 rounded-md" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
             </section>
             <section className="flex flex-row flex-wrap gap-10 w-full justify-around mt-5">
-                {data && data.map((item, index) => (
-                    <CardCatalogue key={index} name={item.name} image={item.image} description={item.aditional_information} rating={item.stars} deleteMode />
+                {filteredData.map((item) => (
+                    <CardCatalogue key={item.id} data={item} deleteMode />
                 ))}
             </section>
         </main>
