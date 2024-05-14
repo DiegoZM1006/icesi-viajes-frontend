@@ -37,7 +37,7 @@ function Register() {
   }
 
   return (
-    <main className='w-full h-screen bg-[--var-light] flex justify-center items-center p-4'>
+    <main className='w-full h-full bg-[--var-light] flex justify-center items-center p-4'>
         <article className='flex flex-col justify-center items-center w-1/3 h-full p-5'>
           <div className='flex flex-col gap-6 max-w-[500px]'>
             <h1 className='text-4xl font-bold'>Registrate 😊</h1>
