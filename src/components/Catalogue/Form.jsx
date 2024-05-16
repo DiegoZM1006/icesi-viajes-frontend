@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { useState } from "react";
+import uploadImageCloudinary from "../../services/uploadImageCloudinary";
 import { addDestination } from "../../services/addDestination";
 
 function Form(props) {
@@ -24,7 +25,21 @@ function Form(props) {
 
     const handleAddDestination = async (event) => {
         event.preventDefault()
-    
+        
+        const image_prev = event.target.input_file.files[0]
+
+        if (!image_prev) {
+            setErrors('Debes seleccionar una imagen')
+            return
+        }
+
+        const [status, img_reponse] = await uploadImageCloudinary(image_prev)
+
+        if (!status) {
+            setErrors('Error al subir la imagen')
+            return
+        }
+        
         const description = event.target.description.value
         const information = event.target.more_info.value
         const country = event.target.country.value
@@ -35,7 +50,7 @@ function Form(props) {
         const name = event.target.name.value
         const hotel = event.target.hotel.value
         const tickets = event.target.tickets.value
-        const image = event.target.input_file.files[0]
+        const image = img_reponse.secure_url
     
         const data = {
             name,
@@ -72,7 +87,7 @@ function Form(props) {
                 </button>
                 <div>
                     <label htmlFor="description">Descripción</label>
-                    <textarea value={props.description} type="text" id='description' name='description' placeholder='Escribe una descripción del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                    <textarea value={props.description} type="text" id='description' name='description' placeholder='Escribe una descripción del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                 </div> 
                 <div>
                     <label htmlFor="more_info">+ Informacion</label>
@@ -84,22 +99,22 @@ function Form(props) {
                 <div className='flex flex-row gap-2'>
                     <div className='flex-1'>
                         <label htmlFor="country">País</label>
-                        <input value={props.country} type="text" id='country' name='country' placeholder='Escribe el país' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        <input value={props.country} type="text" id='country' name='country' placeholder='Escribe el país' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                     </div>
                     <div className='flex-1'>
                         <label htmlFor="city">Ciudad</label>
-                        <input value={props.city} type="text" id='city' name='city' placeholder='Escribe la ciudad' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        <input value={props.city} type="text" id='city' name='city' placeholder='Escribe la ciudad' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                     </div>
                 </div>
                 <h2 className="font-medium">Hospedaje</h2>
                 <div className='flex flex-row gap-2'>
                     <div className='flex-1'>
                         <label htmlFor="days">Dia(s)</label>
-                        <input value={props.days} type="number" id='days' name='days' placeholder='Escribe los dias de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        <input value={props.days} type="number" id='days' name='days' placeholder='Escribe los dias de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                     </div>
                     <div className='flex-1'>
                         <label htmlFor="nights">Noche(s)</label>
-                        <input value={props.nights} type="text" id='nights' name='nights' placeholder='Escribe las noches de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        <input value={props.nights} type="text" id='nights' name='nights' placeholder='Escribe las noches de hospedaje' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                     </div>
                 </div>
                 <div className='flex flex-row gap-2'>
@@ -113,16 +128,16 @@ function Form(props) {
                     </div>
                     <div className='flex-1'>
                         <label htmlFor="price">Precio</label>
-                        <input value={props.price} type="number" id='price' name='price' placeholder='Escribe el precio x persona' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        <input value={props.price} type="number" id='price' name='price' placeholder='Escribe el precio x persona' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                     </div>
                 </div>
                 <div>
                     <label htmlFor="name">Nombre destino</label>
-                    <input value={props.name} type="text" id='name' name='name' placeholder='Escribe el nombre del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                    <input value={props.name} type="text" id='name' name='name' placeholder='Escribe el nombre del destino' className='w-full mt-1 p-2 border border-gray-300 rounded-md' required/>
                 </div>
                 <div>
                     <label htmlFor="hotel">Hotel</label>
-                    <input value={props.hotel} type="text" id='hotel' name='hotel' placeholder='Escribe el nombre del hotel' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                    <input value={props.hotel} type="text" id='hotel' name='hotel' placeholder='Escribe el nombre del hotel' className='w-full mt-1 p-2 border border-gray-300 rounded-md'/>
                 </div>
                 <div className="flex gap-5 w-full mt-5">
                     <Link className="flex flex-grow justify-center px-3 py-2 bg-[--var-danger] text-white rounded-md" to='/catalogue'>

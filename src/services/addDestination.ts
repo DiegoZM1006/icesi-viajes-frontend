@@ -13,14 +13,14 @@ export const addDestination = async (data, setErrors, setValid) => {
   };
 
   try {
-    // const response = await axios.post(
-    //   ADD_DESTINATION_URL, 
-    //   data,
-    //   config
-    // )
-    // if (response.status === 200) {
-    //   setValid('Destino creado con exito')
-    // }
+    const response = await axios.post(
+      ADD_DESTINATION_URL, 
+      data,
+      config
+    )
+    if (response.status === 201) {
+      setValid('Destino creado con exito')
+    }
   } catch (error) { 
     if (!error.response) {
       setErrors('Error de conexión')
