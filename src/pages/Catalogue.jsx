@@ -44,7 +44,7 @@ function Catalogue() {
             <section className="flex justify-between items-center">
                 <h1 className="text-3xl font-semibold">Catálogo</h1>
                 {
-                auth?.data.role === 'ADMIN' || auth?.data.role === 'AGENT' ? 
+                auth?.data.role === 'ADMIN' ? 
                 <Link to='/catalogue/create'>
                     <button className="py-2 px-4 bg-[--var-dark-shades] text-white rounded-md">Crear destino</button>
                 </Link> : null

@@ -35,7 +35,7 @@ function App() {
               <Route path='/catalogue/create' element={<Layout />}>
                 <Route key={'createdestination'} index={true} element={<CreateDestination />} />
               </Route>
-              <Route path='/catalogue/modify' element={<Layout />}>
+              <Route path='/catalogue/modify/:id' element={<Layout />}>
                 <Route key={'modifydestination'} index={true} element={<ModifyDestination />} />
               </Route>
               <Route path='/clients' element={<Layout />}>
