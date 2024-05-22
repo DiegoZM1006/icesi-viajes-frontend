@@ -1,4 +1,4 @@
-import Form from "../components/Catalogue/Form";
+import Form from "../components/Catalogue/FormUpdateDestination";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../services/axios";
@@ -30,7 +30,7 @@ function ModifyDestination() {
             <h1 className="text-3xl font-semibold">Modificar destino</h1>
             <main className='flex flex-row justify-center items-center h-full min-h-[90vh] w-full'>
                 {
-                    data ? <Form /> : <p className="text-3xl">Cargando...</p>
+                    data ? <Form id={data.id} description={data.description} name={data.name} image={data.image} information={data.information} country={data.country} city={data.city} days={data.days} nights={data.nights} tickets={data.tickets} price={data.price} hotel={data.hotel}/> : <p className="text-3xl">Cargando...</p>
                 }
             </main>
         </main>

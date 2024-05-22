@@ -1,4 +1,4 @@
-import Form from "../components/Catalogue/Form";
+import Form from "../components/Catalogue/FormCreateDestination";
 
 function CreateDestination() {
     return (
