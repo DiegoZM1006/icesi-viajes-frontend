@@ -2,7 +2,7 @@ import axios from '../services/axios'
 
 const ALL_DESTINATIONS_URL = 'api/v1/destinations/allDestinations'
 
-export default async function allClients() {
+export default async function allDestinations() {
     let auth = JSON.parse(localStorage.getItem('user') || 'null');
     
     const config = {

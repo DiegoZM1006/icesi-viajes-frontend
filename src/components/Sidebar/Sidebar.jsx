@@ -38,7 +38,9 @@ function Sidebar(props) {
                         <Link to={'/catalogue'}>
                             <Button description='Catálogo' image={<IconDashboard />} active={btnActive('/catalogue')} />
                         </Link>
-                        <Button description='Reservas - Ventas' image={<IconDashboard />} active={btnActive('/reservas')} />
+                        <Link to={'/sales'}>
+                            <Button description='Reservas - Ventas' image={<IconDashboard />} active={btnActive('/sales')} />
+                        </Link>
                         <Link to={'/clients'}>
                             <Button description='Administrar Clientes' image={<IconDashboard />} active={btnActive('/clients')} />
                         </Link>
@@ -83,9 +85,7 @@ function Sidebar(props) {
                 <p>{userRole}</p>
                 <hr className='w-full h-[2px] m-2 mx-auto border-0 rounded bg-white'/>
                 <p className='mb-5'>{props.user.data.name}</p>
-                <button onClick={logout}>
-                    Cerrar Sesión
-                </button>
+                <button onClick={logout} className='bg-[--var-danger] text-white py-2 px-5  hover:bg-red-700 rounded-md w-full'>Cerrar sesión</button>
             </section>
         </aside>
     );
