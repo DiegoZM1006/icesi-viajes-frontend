@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { searchClient } from "../services/searchClient";
 import allDestinations from "../services/allDestinations";
+import { addReservation } from "../services/addReservation";
 
 function Sales() {
   const [errors, setErrors] = useState("");
   const [valid, setValid] = useState("");
   const [destinations, setDestinations] = useState([]);
-  const [selectedDestination, setSelectedDestination] = useState(null);
-  const [date, setDate] = useState("");
+  const [selectedDestination, setSelectedDestination] = useState([]);
   const [dataClient, setDataClient] = useState({
     card_number: "",
     name: "",
@@ -15,10 +15,11 @@ function Sales() {
     phone_number: "",
     address: "",
     email: "",
+    date: "",
   });
 
   const handleChangeDataClient = async (e) => {
-    if(e.target.value == "") {
+    if (e.target.value == "") {
       setErrors("El campo cédula no puede estar vacío");
       return;
     }
@@ -29,25 +30,47 @@ function Sales() {
     );
     if (responseClient) {
       setDataClient({
+        id: responseClient.id,
         card_number: responseClient.card_number,
         name: responseClient.name,
         lastname: responseClient.lastname,
         phone_number: responseClient.phone_number,
         address: responseClient.address,
         email: responseClient.email,
-        date: date,
+        date: dataClient.date,
+        useranme: responseClient.username,
+        password: responseClient.password,
       });
     } else {
       setDataClient({
-        card_number: "",
+        card_number: e.target.value,
         name: "",
         lastname: "",
         phone_number: "",
         address: "",
         email: "",
+        date: dataClient.date,
       });
     }
   };
+
+  useEffect(() => {
+    if (errors) {
+      const timer = setTimeout(() => {
+        setErrors(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    if (valid) {
+      const timer = setTimeout(() => {
+        setValid(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [valid]);
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -69,17 +92,54 @@ function Sales() {
     }));
   };
 
-  const handleDate = (e) => {
-    setDate(e.target.value);
+  const removeDestination = (destinationToRemove) => {
+    const newDestinations = selectedDestination.filter(
+      (destination) => destination.id !== destinationToRemove.id
+    );
+    setDestinations([...destinations, destinationToRemove]);
+    setSelectedDestination(newDestinations);
+    setErrors("Destino eliminado");
   };
 
   const handleDestinationSelected = (destination) => {
-    setSelectedDestination(destination);
+    const newDestinationsToAdd = [...selectedDestination, destination];
+    const newDestinationsToDelete = destinations.filter(
+      (destination) => !newDestinationsToAdd.includes(destination)
+    );
+
+    setDestinations(newDestinationsToDelete);
+    setSelectedDestination(newDestinationsToAdd);
+    setValid("Destino agregado");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(dataClient);
+
+    const isValidate = Object.values(dataClient).every((value) => value !== "");
+    if (!isValidate) {
+      setErrors("Todos los campos son obligatorios");
+      return;
+    } else if (selectedDestination.length === 0) {
+      setErrors("Debes seleccionar al menos un destino");
+      return;
+    }
+
+    // console.log(selectedDestination);
+    const response = await addReservation(dataClient, selectedDestination, setErrors, setValid);
+
+    if (response) {
+      setValid("Reserva realizada con éxito");
+      setDataClient({
+        card_number: "",
+        name: "",
+        lastname: "",
+        phone_number: "",
+        address: "",
+        email: "",
+        date: "",
+      });
+      setSelectedDestination([]);
+    }
   };
 
   return (
@@ -90,9 +150,10 @@ function Sales() {
           <form
             action="POST"
             onSubmit={handleSubmit}
-            className="w-full p-6 bg-white shadow-md rounded-md flex flex-wrap gap-2"
+            className="w-full p-6 bg-white shadow-md rounded-md flex flex-wrap gap-2 justify-stretch max-w-[1000px]
+          mx-auto"
           >
-            <div className="mb-4 flex flex-wrap">
+            <div>
               <label
                 htmlFor="card_number"
                 className="block text-gray-700 font-medium mb-2"
@@ -108,7 +169,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="name"
                 className="block text-gray-700 font-medium mb-2"
@@ -125,7 +186,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="lastname"
                 className="block text-gray-700 font-medium mb-2"
@@ -142,7 +203,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="phone_number"
                 className="block text-gray-700 font-medium mb-2"
@@ -159,7 +220,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="address"
                 className="block text-gray-700 font-medium mb-2"
@@ -176,7 +237,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="email"
                 className="block text-gray-700 font-medium mb-2"
@@ -193,7 +254,7 @@ function Sales() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="date"
                 className="block text-gray-700 font-medium mb-2"
@@ -202,50 +263,64 @@ function Sales() {
               </label>
               <input
                 id="date"
-                type="date"
+                type="datetime-local"
                 name="date"
                 placeholder="Elige la fecha"
-                onChange={handleDate}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+            <div className="flex justify-end items-center w-full">
+              <input
+                id="submit"
+                type="submit"
+                className="px-6 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-[--var-dark-shades] text-white font-semibold cursor-pointer"
               />
             </div>
           </form>
         </article>
         <article className="w-full mt-5">
-          {selectedDestination && (
-            <section className="mb-5">
-              <h1 className="text-2xl mb-5">Destino Seleccionado</h1>
-              <div className="bg-white shadow-md rounded-md p-4 h-80 max-h-96 w-52">
-                <div className="h-full flex justify-between flex-col">
-                  <img
-                    src={selectedDestination.image}
-                    alt={"Imagen del plan " + selectedDestination.description}
-                    className="w-full h-28"
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      {selectedDestination.country}, {selectedDestination.city}.
-                    </h3>
-                    <p className="text-sm font-semibold">
-                      Precio: ${selectedDestination.price} COP
-                    </p>
+          {selectedDestination.length > 0 ? (
+            <h2 className="text-2xl mb-5">Destinos Seleccionados</h2>
+          ) : null}
+          {selectedDestination.length > 0 ? (
+            <section className="mb-5 flex gap-3 flex-wrap justify-center">
+              {selectedDestination.map((destination) => (
+                <div
+                  className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-52"
+                  key={destination.id}
+                >
+                  <div className="h-full flex justify-between flex-col">
+                    <img
+                      src={destination.image}
+                      alt={"Imagen del plan " + destination.description}
+                      className="w-full h-28"
+                    />
+                    <div>
+                      <h3 className="text-lg font-semibold">
+                        {destination.country}, {destination.city}.
+                      </h3>
+                      <p className="text-sm font-semibold">
+                        Precio: ${destination.price} COP
+                      </p>
+                    </div>
+                    <button
+                      className="bg-red-500 text-white px-4 py-1 rounded-md"
+                      onClick={() => removeDestination(destination)}
+                    >
+                      Quitar
+                    </button>
                   </div>
-                  <button
-                    className="bg-red-500 text-white px-4 py-1 rounded-md"
-                    onClick={() => setSelectedDestination(null)}
-                  >
-                    Quitar
-                  </button>
                 </div>
-              </div>
+              ))}
             </section>
-          )}
+          ) : null}
           <h2 className="text-2xl mb-5">Destinos</h2>
           <div className="flex flex-wrap gap-4 justify-center">
             {destinations.map((destination) => (
               <div
                 key={destination.id}
-                className="bg-white shadow-md rounded-md p-4 h-80 max-h-96 w-52"
+                className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-52"
               >
                 <div className="h-full flex justify-between flex-col">
                   <img
@@ -273,16 +348,18 @@ function Sales() {
           </div>
         </article>
       </section>
-      {errors && (
-        <p className="fixed font-bold right-0 bottom-0 bg-red-500 px-4 py-2 mb-5 mr-5 text-white rounded-lg">
-          {errors}
-        </p>
-      )}
-      {valid && (
-        <p className="fixed font-bold right-0 bottom-0 bg-green-500 px-4 py-2 mb-5 mr-5 text-white rounded-lg">
-          {valid}
-        </p>
-      )}
+      <div className="fixed bottom-0 right-0 mb-5 mr-5">
+        {errors && (
+          <p className="font-bold right-0 bottom-0 bg-red-500 px-4 py-2 mb-5 mr-5 text-white rounded-lg">
+            {errors}
+          </p>
+        )}
+        {valid && (
+          <p className="font-bold right-0 bottom-0 bg-green-500 px-4 py-2 mb-5 mr-5 text-white rounded-lg">
+            {valid}
+          </p>
+        )}
+      </div>
     </section>
   );
 }
