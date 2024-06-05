@@ -48,7 +48,7 @@ export const addReservation = async (data, selectedDestinations, setErrors, setV
             username: responseCustomer.username,
             password: responseCustomer.password,
         },
-        reservationDate: new Date(date).toISOString(),
+        reservationDate: new Date().toISOString(),
         status: 'confirmed',
         total: selectedDestinations.reduce((acc, destination) => acc + destination.price, 0)
       },

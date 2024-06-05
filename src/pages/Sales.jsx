@@ -138,6 +138,7 @@ function Sales() {
         email: "",
         date: "",
       });
+      setDestinations([...destinations, ...selectedDestination]);
       setSelectedDestination([]);
     }
   };
