@@ -2,21 +2,20 @@ import { useState, useEffect } from "react";
 import { latestSales } from "../../services/DashboardServices";
 
 const LatestSales = () => {
+  const [arrLatestSales, setArrLatestSales] = useState([]);
 
-    const [arrLatestSales, setArrLatestSales] = useState([])
+  useEffect(() => {
+    const fetchLatestSales = async () => {
+      try {
+        const data = await latestSales();
+        setArrLatestSales(data);
+      } catch (error) {
+        console.error("Error trayendo las ultimas ventas", error);
+      }
+    };
 
-    useEffect(() => {
-        const fetchLatestSales = async () => {
-            try {
-                const data = await latestSales();
-                setArrLatestSales(data);
-            } catch (error) {
-                console.error("Error trayendo las ultimas ventas", error);
-            }
-        };
-
-        fetchLatestSales();
-    }, []);
+    fetchLatestSales();
+  }, []);
 
   return (
     <div>
@@ -49,18 +48,33 @@ const LatestSales = () => {
             </tr>
           </thead>
           <tbody>
-            {arrLatestSales.map((sale, index) => (
-              <tr key={index} className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap px-6 py-4 font-medium">
-                  {index + 1}
-                </td>
-                <td className="whitespace-nowrap px-6 py-4">{sale[0]}</td>
-                <td className="whitespace-nowrap px-6 py-4">{sale[1]}</td>
-                <td className="whitespace-nowrap px-6 py-4">{sale[2]}</td>
-                <td className="whitespace-nowrap px-6 py-4">{sale[3]}</td>
-                <td className="whitespace-nowrap px-6 py-4">$ {sale[4]} COP</td>
-              </tr>
-            ))}
+            {arrLatestSales.map((sale, index) => {
+              const formattedDate = new Date(sale[3]).toLocaleString("es-ES", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              });
+
+              return (
+                <tr key={index} className="border-b dark:border-neutral-500">
+                  <td className="whitespace-nowrap px-6 py-4 font-medium">
+                    {index + 1}
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4">{sale[0]}</td>
+                  <td className="whitespace-nowrap px-6 py-4">{sale[1]}</td>
+                  <td className="whitespace-nowrap px-6 py-4">{sale[2]}</td>
+                  <td className="whitespace-nowrap px-6 py-4">
+                    {formattedDate}
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4">
+                    $ {sale[4]} COP
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </article>
