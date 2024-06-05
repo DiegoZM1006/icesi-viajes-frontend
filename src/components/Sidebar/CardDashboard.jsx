@@ -1,13 +1,12 @@
-import IconDashboard from '../Icons/IconDashboard';
 import PropTypes from 'prop-types';
 
 function CardDashboard(props) {
     return(
         <section className={'w-full flex flex-col justify-between min-h-[180px] py-5 px-3 rounded-[12px] border-[2px] border-[rgba(0,0,0,0.10)] scale-95 hover:scale-100 ' + props.classBtn}>
             <section className='flex justify-between'>
-                <IconDashboard />
+                {props.icon}
                 <div className='flex flex-col items-end'>
-                    <p className='font-semibold text-5xl'>{props.number}</p>
+                    <p className='font-semibold text-6xl'>{props.number}</p>
                     {props.secondNumber && <p className='text-sm'>{props.secondNumber}</p>}
                 </div>
             </section>
@@ -21,6 +20,7 @@ CardDashboard.propTypes = {
     description: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     secondNumber: PropTypes.string,
+    icon: PropTypes.element
 };
 
 

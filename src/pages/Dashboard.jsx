@@ -12,6 +12,10 @@ import PolarChart from "../components/Dashboard/PolarChart";
 import BarChart from "../components/Dashboard/BarChart";
 import BestSellers from "../components/Dashboard/BestSellers";
 import LatestSales from "../components/Dashboard/LatestSales";
+import IconSales from "../components/Icons/Sales";
+import IconCatalogue from "../components/Icons/Catalogue";
+import IconPerson from "../components/Icons/Person";
+import IconAdminEmployees from "../components/Icons/AdminEmployees";
 
 function Dashboard() {
   const [numberDestinations, setNumberDestinations] = useState(0);
@@ -111,22 +115,26 @@ function Dashboard() {
       <h1 className="text-3xl font-semibold">Panel de control</h1>
       <section className="flex flex-row gap-5 justify-between">
         <CardDashboard
+          icon={<IconSales fill="black" />}
           number={numberSales}
           secondNumber={numberTotalPriceSales}
           description="Ventas"
           classBtn="bg-[rgba(6,_222,_105,_0.25)] [box-shadow:0px_12px_20px_0px_rgba(6,_222,_105,_0.25)]"
         />
         <CardDashboard
+          icon={<IconPerson fill={"black"} />}
           number={numberClients}
           description="Clientes"
           classBtn="bg-[rgba(222,_214,_6,_0.25)] [box-shadow:0px_12px_20px_0px_rgba(222,_214,_6,_0.25)]"
         />
         <CardDashboard
+          icon={<IconAdminEmployees fill={"black"} />}
           number={numberEmployees}
           description="Empleados"
           classBtn="bg-[rgba(49,_171,_210,_0.25)] [box-shadow:0px_12px_20px_0px_rgba(49,_171,_210,_0.25)]"
         />
         <CardDashboard
+          icon={<IconCatalogue fill={"black"} />}
           number={numberDestinations}
           description="Catálogo"
           classBtn="bg-[rgba(222,_6,_6,_0.25)] [box-shadow:0px_12px_20px_0px_rgba(222,_6,_6,_0.25)]"

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import IconDashboard from '../Icons/IconDashboard'; 
 import ButtonModal from '../Catalogue/ButtonModal';
 import { Rating } from 'react-simple-star-rating'
 import { deleteDestinations } from '../../services/deleteDestinations';
+import IconDelete from '../Icons/Delete';
 
 function CardCatalogue(props) {
 
@@ -59,7 +59,7 @@ function CardCatalogue(props) {
                 </div>
                 {props.deleteMode && 
                     <button className='absolute w-12 h-12 -mt-5 -mr-5 right-0 top-0 bg-[--var-danger-75] rounded-full flex justify-center items-center' onClick={showSwal}>
-                        <IconDashboard />
+                        <IconDelete />
                     </button>
                 }
             </article>

@@ -2,6 +2,10 @@ import Button from './ButtonSidebar';
 import IconDashboard from '../Icons/IconDashboard';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import IconSales from '../Icons/Sales';
+import IconCatalogue from '../Icons/Catalogue';
+import IconAdminClients from '../Icons/AdminClients';
+import IconAdminEmployees from '../Icons/AdminEmployees';
 
 function Sidebar(props) {
 
@@ -36,16 +40,16 @@ function Sidebar(props) {
                             <Button description='Panel de control' image={<IconDashboard />} active={btnActive('/dashboard')} />
                         </Link>
                         <Link to={'/catalogue'}>
-                            <Button description='Catálogo' image={<IconDashboard />} active={btnActive('/catalogue')} />
+                            <Button description='Catálogo' image={<IconCatalogue />} active={btnActive('/catalogue')} />
                         </Link>
                         <Link to={'/sales'}>
-                            <Button description='Reservas - Ventas' image={<IconDashboard />} active={btnActive('/sales')} />
+                            <Button description='Reservas - Ventas' image={<IconSales />} active={btnActive('/sales')} />
                         </Link>
                         <Link to={'/clients'}>
-                            <Button description='Administrar Clientes' image={<IconDashboard />} active={btnActive('/clients')} />
+                            <Button description='Administrar Clientes' image={<IconAdminClients />} active={btnActive('/clients')} />
                         </Link>
                         <Link to={'/employees'}>
-                            <Button description='Administrar Empleados' image={<IconDashboard />} active={btnActive('/employees')} />
+                            <Button description='Administrar Empleados' image={<IconAdminEmployees />} active={btnActive('/employees')} />
                         </Link>
                     </>
                 );
@@ -53,20 +57,20 @@ function Sidebar(props) {
                 return (
                     <>
                         <Link to={'/catalogue'}>
-                            <Button description='Catálogo' image={<IconDashboard />} active={btnActive('/catalogue')} />
+                            <Button description='Catálogo' image={<IconCatalogue />} active={btnActive('/catalogue')} />
                         </Link>
                         <Link to={'/sales'}>
-                            <Button description='Reservas - Ventas' image={<IconDashboard />} active={btnActive('/sales')} />
+                            <Button description='Reservas - Ventas' image={<IconSales />} active={btnActive('/sales')} />
                         </Link>
                         <Link to={'/clients'}>
-                            <Button description='Administrar Clientes' image={<IconDashboard />} active={btnActive('/clients')} />
+                            <Button description='Administrar Clientes' image={<IconAdminClients />} active={btnActive('/clients')} />
                         </Link>
                     </>
                 );
             case 'Cliente':
                 return (
                     <Link to={'/catalogue'}>
-                        <Button description='Catálogo' image={<IconDashboard />} active={btnActive('/catalogue')} />
+                        <Button description='Catálogo' image={<IconCatalogue />} active={btnActive('/catalogue')} />
                     </Link>
                 );
             default:

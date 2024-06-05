@@ -86,7 +86,7 @@ function ButtonModal(props) {
   return (
     <>
       <button
-        className="bg-[--var-dark-shades] text-white active:bg-[--var-hover-dark-shades] font-bold uppercase text-sm px-6 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+        className="bg-[--var-dark-shades] text-white hover:bg-[--var-hover-dark-shades] active:bg-[--var-hover-dark-shades] font-bold uppercase text-sm px-6 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowModal(true)}
       >
