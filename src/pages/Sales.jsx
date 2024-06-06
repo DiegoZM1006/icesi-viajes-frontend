@@ -21,6 +21,15 @@ function Sales() {
   const handleChangeDataClient = async (e) => {
     if (e.target.value == "") {
       setErrors("El campo cédula no puede estar vacío");
+      setDataClient({
+        card_number: e.target.value,
+        name: "",
+        lastname: "",
+        phone_number: "",
+        address: "",
+        email: "",
+        date: new Date(),
+      });
       return;
     }
     const responseClient = await searchClient(
@@ -37,7 +46,7 @@ function Sales() {
         phone_number: responseClient.phone_number,
         address: responseClient.address,
         email: responseClient.email,
-        date: dataClient.date,
+        date: new Date(),
         useranme: responseClient.username,
         password: responseClient.password,
       });
@@ -49,7 +58,7 @@ function Sales() {
         phone_number: "",
         address: "",
         email: "",
-        date: dataClient.date,
+        date: new Date(),
       });
     }
   };
@@ -112,6 +121,22 @@ function Sales() {
     setValid("Destino agregado");
   };
 
+  console.log();
+
+  const handleAddDateToDestination = (e, idDestination) => {
+    const newSelectedDestination = selectedDestination.map((destination) => {
+      if (destination.id === idDestination) {
+        return {
+          ...destination,
+          reservation_date: e.target.value,
+        };
+      }
+      return destination;
+    });
+
+    setSelectedDestination(newSelectedDestination);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -122,10 +147,20 @@ function Sales() {
     } else if (selectedDestination.length === 0) {
       setErrors("Debes seleccionar al menos un destino");
       return;
+    } else if (
+      selectedDestination.some((destination) => !destination.reservation_date)
+    ) {
+      setErrors("Debes seleccionar una fecha para todos los destinos");
+      return;
     }
 
     // console.log(selectedDestination);
-    const response = await addReservation(dataClient, selectedDestination, setErrors, setValid);
+    const response = await addReservation(
+      dataClient,
+      selectedDestination,
+      setErrors,
+      setValid
+    );
 
     if (response) {
       setValid("Reserva realizada con éxito");
@@ -185,6 +220,7 @@ function Sales() {
                 value={dataClient.name}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                disabled
               />
             </div>
             <div>
@@ -202,6 +238,7 @@ function Sales() {
                 value={dataClient.lastname}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                disabled
               />
             </div>
             <div>
@@ -219,6 +256,7 @@ function Sales() {
                 value={dataClient.phone_number}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                disabled
               />
             </div>
             <div>
@@ -236,6 +274,7 @@ function Sales() {
                 value={dataClient.address}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                disabled
               />
             </div>
             <div>
@@ -253,9 +292,10 @@ function Sales() {
                 value={dataClient.email}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                disabled
               />
             </div>
-            <div>
+            {/* <div>
               <label
                 htmlFor="date"
                 className="block text-gray-700 font-medium mb-2"
@@ -270,7 +310,7 @@ function Sales() {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
-            </div>
+            </div> */}
             <div className="flex justify-end items-center w-full">
               <input
                 id="submit"
@@ -288,7 +328,7 @@ function Sales() {
             <section className="mb-5 flex gap-3 flex-wrap justify-center">
               {selectedDestination.map((destination) => (
                 <div
-                  className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-52"
+                  className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-60 hover:scale-105 transition-all duration-300 ease-in-out"
                   key={destination.id}
                 >
                   <div className="h-full flex justify-between flex-col">
@@ -311,6 +351,14 @@ function Sales() {
                     >
                       Quitar
                     </button>
+                    <input
+                      onChange={(e) =>
+                        handleAddDateToDestination(e, destination.id)
+                      }
+                      name="reservation_date"
+                      id="reservation_date"
+                      type="datetime-local"
+                    />
                   </div>
                 </div>
               ))}
@@ -321,7 +369,7 @@ function Sales() {
             {destinations.map((destination) => (
               <div
                 key={destination.id}
-                className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-52"
+                className="bg-white shadow-md rounded-md p-4 h-72 max-h-96 w-52 hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <div className="h-full flex justify-between flex-col">
                   <img
