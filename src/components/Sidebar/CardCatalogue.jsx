@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import ButtonModal from '../Catalogue/ButtonModal';
-import { Rating } from 'react-simple-star-rating'
 import { deleteDestinations } from '../../services/deleteDestinations';
 import IconDelete from '../Icons/Delete';
 
@@ -53,8 +52,8 @@ function CardCatalogue(props) {
                     <h2 className='font-bold text-md'>{props.data.city}, {props.data.country}.</h2>
                     <p className='text-sm'>{props.data.description}</p>
                 </div>
-                <div className='w-full flex justify-between px-2 py-2 items-center'>
-                    <Rating size={32} readonly allowFraction initialValue={props.data.rating ?? 5} />
+                <div className='w-full flex justify-end px-2 py-2 items-center'>
+                    {/* <Rating size={32} readonly allowFraction initialValue={props.data.rating ?? 5} /> */}
                     <ButtonModal data={props.data} />
                 </div>
                 {props.deleteMode && 
