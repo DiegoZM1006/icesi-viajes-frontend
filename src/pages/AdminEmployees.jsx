@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component';
 import { useEffect, useState } from 'react';
-import IconDashboard from '../components/Icons/IconDashboard';
+import IconEdit from '../components/Icons/Edit';
 import { Link } from 'react-router-dom';
 import { allEmployees } from '../services/allEmployees';
 import DeleteButtonEmployee from '../components/Admin/DeleteButtonEmployee';
@@ -71,7 +71,7 @@ function AdminEmployees() {
       cell: (row) => (
         <div className="flex justify-center gap-1">
           <Link to={'/employees/modify/' + row.id}>
-            <button className="bg-blue-500 text-white p-2 rounded"><IconDashboard /></button>
+            <button className="bg-blue-500 text-white p-2 rounded"><IconEdit /></button>
           </Link>
           {/* <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button> */}
           <DeleteButtonEmployee id={row.id} />
@@ -86,8 +86,9 @@ function AdminEmployees() {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedData = await allEmployees();
-      setData(fetchedData);
-      setRecords(fetchedData);
+      const filterDataByStatus = fetchedData.filter(row => row.status === 'active');
+      setData(filterDataByStatus);
+      setRecords(filterDataByStatus);
     };
     fetchData();
   }, []);

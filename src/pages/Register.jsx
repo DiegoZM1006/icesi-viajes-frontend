@@ -34,7 +34,7 @@ function Register() {
     const response = await register(data, setErrors, setValid);
 
     if (response) {
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   };
 

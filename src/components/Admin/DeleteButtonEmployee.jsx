@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import IconDashboard from '../Icons/IconDashboard'
+import IconDelete from '../Icons/Delete'
 import PropTypes from 'prop-types'
 import { deleteEmployee } from '../../services/deleteEmployee'
 
@@ -25,6 +25,9 @@ function DeleteButtonEmployee({ id }) {
                             "El empleado ha sido eliminado.",
                             "success"
                         );
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
                     } else {
                         Swal.showValidationMessage(
                             `Ha surgido un error: ${response}`
@@ -43,7 +46,7 @@ function DeleteButtonEmployee({ id }) {
 
   return (
     <>
-      <button className='bg-red-500 text-white p-2 rounded' onClick={showSwal}><IconDashboard /></button>
+      <button className='bg-red-500 text-white p-2 rounded' onClick={showSwal}><IconDelete /></button>
     </>
   )
 }

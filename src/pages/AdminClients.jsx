@@ -81,8 +81,9 @@ function AdminClients() {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedData = await allClients();
-      setData(fetchedData);
-      setRecords(fetchedData);
+      const filterDataByStatus = fetchedData.filter(client => client.status === 'active');
+      setData(filterDataByStatus);
+      setRecords(filterDataByStatus);
     };
     fetchData();
   }, []);

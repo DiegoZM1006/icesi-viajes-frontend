@@ -25,6 +25,9 @@ function DeleteButton({ id }) {
                           "El cliente ha sido eliminado.",
                           "success"
                       );
+                      setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                   } else {
                       Swal.showValidationMessage(
                           `Ha surgido un error: ${response}`

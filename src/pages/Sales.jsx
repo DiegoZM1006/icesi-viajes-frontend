@@ -85,7 +85,8 @@ function Sales() {
     const fetchDestinations = async () => {
       try {
         const response = await allDestinations();
-        setDestinations(response);
+        const filterDestinationByStatus = response.filter((item) => item.status === "active");
+        setDestinations(filterDestinationByStatus);
       } catch (error) {
         setErrors("Ocurrió un error al cargar los destinos");
       }

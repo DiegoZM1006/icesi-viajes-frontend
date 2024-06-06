@@ -18,7 +18,8 @@ function Catalogue() {
     const fetchData = async () => {
       try {
         const response = await allDestinations();
-        setData(response);
+        const filterDestinationByStatus = response.filter((item) => item.status === "active");
+        setData(filterDestinationByStatus);
       } catch (error) {
         setData([]);
       }
