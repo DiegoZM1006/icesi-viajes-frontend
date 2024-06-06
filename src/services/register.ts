@@ -15,6 +15,7 @@ export const register = async (data, setErrors, setValid) => {
         )
         if (response.status === 200) {
           setValid('Usuario creado con exito')
+          return true
         }
       } catch (error) { 
         if (!error.response) {

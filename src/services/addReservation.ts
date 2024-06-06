@@ -62,7 +62,8 @@ export const addReservation = async (data, selectedDestinations, setErrors, setV
             {
                 reservation_id: response.data.id, 
                 destination_id: selectedDestinations[i].id, 
-                total: selectedDestinations[i].price
+                total: selectedDestinations[i].price,
+                reservation_date: selectedDestinations[i].reservation_date,
             },
             config
           )
