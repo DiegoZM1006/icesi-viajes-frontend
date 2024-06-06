@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component';
 import { useEffect, useState } from 'react';
-import IconDashboard from '../components/Icons/IconDashboard';
+import IconEdit from '../components/Icons/Edit';
 import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
 import { allClients } from '../services/allClients';
@@ -53,11 +53,12 @@ function AdminClients() {
       name: 'Contraseña',
       selector: row => row.password,
       sortable: true,
+      omit: true,
     },
     {
       name: 'Reservas',
-      cell: () => (
-        <ButtonModal />
+      cell: (row) => (
+        <ButtonModal id={row.id} />
       ),
     },
     {
@@ -65,7 +66,7 @@ function AdminClients() {
       cell: (row) => (
         <div className="flex justify-center gap-1">
           <Link to={'/clients/modify/' + row.id}>
-            <button className="bg-blue-500 text-white p-2 rounded"><IconDashboard /></button>
+            <button className="bg-blue-500 text-white p-2 rounded"><IconEdit /></button>
           </Link>
           {/* <button className="bg-red-500 text-white p-2 rounded"><IconDashboard /></button> */}
           <DeleteButton id={row.id} />

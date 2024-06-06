@@ -1,10 +1,10 @@
 import DataTable from 'react-data-table-component';
 import { useEffect, useState } from 'react';
 import IconDashboard from '../components/Icons/IconDashboard';
-import ButtonModal from '../components/Admin/ButtonModal';
 import { Link } from 'react-router-dom';
 import { allEmployees } from '../services/allEmployees';
 import DeleteButtonEmployee from '../components/Admin/DeleteButtonEmployee';
+import ButtonModalSeller from '../components/Admin/ButtonModalSeller';
 
 function AdminEmployees() {
 
@@ -58,11 +58,12 @@ function AdminEmployees() {
       name: 'Contraseña',
       selector: row => row.password,
       sortable: true,
+      omit: true,
     },
     {
       name: 'Ventas',
-      cell: () => (
-        <ButtonModal />
+      cell: (row) => (
+        <ButtonModalSeller id={row.id} />
       ),
     },
     {
