@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import IconSales from "../Icons/Sales";
 import PropTypes from "prop-types";
-import { getSalesByUser } from "../../services/getSalesByUser";
+import { getSalesBySeller } from "../../services/getSalesByUser";
 
-function ButtonModal(props) {
+function ButtonModalSeller(props) {
   const [showModal, setShowModal] = useState(false);
   const [destinations, setDestinations] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
@@ -13,7 +13,7 @@ function ButtonModal(props) {
     if (showModal) {
       const fetchDestinationsByUser = async () => {
         try {
-          const response = await getSalesByUser(props.id);
+          const response = await getSalesBySeller(props.id);
           setTotalSales(response.reduce((acc, curr) => acc + curr[2], 0));
           setCountSales(response.length);
           setDestinations(response);
@@ -42,7 +42,7 @@ function ButtonModal(props) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[--var-white] outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-6 border-b border-solid border-blueGray-200 rounded-b">
-                  <h3 className="text-3xl font-semibold">Lista de reservas</h3>
+                  <h3 className="text-3xl font-semibold">Lista de ventas</h3>
                 </div>
                 {/*body*/}
                 <article className="relative flex flex-col flex-auto items-center p-5 gap-5 max-h-[200px] overflow-y-auto">
@@ -66,15 +66,15 @@ function ButtonModal(props) {
                       </tbody>
                     </table>
                   ) : (
-                    <p className="text-2xl text-center">No hay compras</p>
+                    <p className="text-2xl text-center">No hay ventas</p>
                   )}
                 </article>
                 {/*footer*/}
                 <div className="flex items-center justify-between p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <div>
-                    <p className="text-lg">Reservas : {countSales}</p>
+                    <p className="text-lg">Ventas : {countSales}</p>
                     <p className="text-lg">
-                      Valor total reservas: $ {totalSales} COP
+                      Valor total ventas: $ {totalSales} COP
                     </p>
                   </div>
                   <button
@@ -95,8 +95,8 @@ function ButtonModal(props) {
   );
 }
 
-ButtonModal.propTypes = {
+ButtonModalSeller.propTypes = {
   id: PropTypes.number,
 };
 
-export default ButtonModal;
+export default ButtonModalSeller;
