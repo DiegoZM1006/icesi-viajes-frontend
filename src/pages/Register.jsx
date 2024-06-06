@@ -1,5 +1,5 @@
 import "../index.css";
-import image from "../assets/image-register.jpg";
+import image from "../assets/image-login.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { register } from "../services/register";
@@ -31,14 +31,23 @@ function Register() {
       password,
     };
 
-    await register(data, setErrors, setValid);
+    const response = await register(data, setErrors, setValid);
+
+    if (response) {
+      window.location.href = "/login";
+    }
   };
 
   return (
-    <main className="w-full h-full bg-[--var-light] flex justify-center items-center p-4">
-      <article className="flex flex-col justify-center items-center w-1/3 h-full p-5">
+    <main
+      className="w-full h-screen bg-[--var-light] flex justify-center items-center p-4 bg-cover"
+      style={{ backgroundImage: "url(" + image + ")" }}
+    >
+      <article className="flex flex-col justify-center items-center w-[450px] p-5 rounded-xl bg-white/80 backdrop-blur-sm">
         <div className="flex flex-col gap-6 max-w-[500px]">
-          <h1 className="text-4xl font-bold">Registrate 😊</h1>
+          <h1 className="text-4xl font-bold flex gap-5 justify-center">
+            Registrate <span className="animate-bounce block">🙂</span>
+          </h1>
           <h3>Por favor ingresa la información para tu cuenta.</h3>
           <form
             onSubmit={handleRegister}
@@ -139,12 +148,20 @@ function Register() {
             </div>
             <button
               type="submit"
-              className="w-full p-3 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]"
+              className="w-full p-3 mt-3 mb-3 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]"
             >
               Registrarse
             </button>
-            {erros && <p className="text-red-600">{erros}</p>}
-            {valid && <p className="text-green-600">{valid}</p>}
+            {erros && (
+              <p className="font-bold right-0 bottom-0 w-full bg-red-500 px-4 py-2 mr-5 text-white rounded-lg">
+                {erros}
+              </p>
+            )}
+            {valid && (
+              <p className="font-bold right-0 bottom-0 w-full bg-green-500 px-4 py-2 mr-5 text-white rounded-lg">
+                {valid}
+              </p>
+            )}
           </form>
           <p className="w-full text-end">
             ¿Ya tienes una cuenta?
@@ -157,11 +174,6 @@ function Register() {
           </p>
         </div>
       </article>
-      <img
-        className="w-2/3 h-full object-cover rounded-xl"
-        src={image}
-        alt="Un hombre atiende a unos clientes en una agencia de viajes"
-      />
     </main>
   );
 }

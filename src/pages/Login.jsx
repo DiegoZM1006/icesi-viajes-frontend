@@ -1,5 +1,5 @@
 import "../index.css";
-import image from "../assets/image.jpg";
+import image from "../assets/image-login.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../services/login";
@@ -17,10 +17,10 @@ function Login() {
   };
 
   return (
-    <main className="w-full h-screen bg-[--var-light] flex justify-center items-center p-4">
-      <article className="flex flex-col justify-center items-center w-1/3 h-full p-5">
+    <main className="w-full h-screen bg-[--var-light] flex justify-center items-center p-4 bg-cover" style={{backgroundImage: 'url(' + image + ')'}}>
+      <article className="flex flex-col justify-center items-center w-[400px] p-5 rounded-xl bg-white/80 backdrop-blur-sm">
         <div className="flex flex-col gap-6 w-full max-w-[500px]">
-          <h1 className="text-4xl font-bold">¡Bienvenido! 👋</h1>
+          <h1 className="text-4xl font-bold flex gap-5 justify-center">¡Bienvenido! <span className="animate-bounce block">👋</span></h1>
           <h3>Por favor ingresa la información de tu cuenta.</h3>
           <form
             onSubmit={handleLogin}
@@ -49,17 +49,6 @@ function Login() {
                 required
               />
             </div>
-            <div className="flex items-center justify-end gap-2">
-              <label htmlFor="remember" className="font-thin">
-                Recordar sesión
-              </label>
-              <input
-                type="checkbox"
-                id="remember"
-                name="remember"
-                className="w-4 h-4"
-              />
-            </div>
             <button
               type="submit"
               className="w-full p-3 rounded-md bg-[--var-dark-shades] text-[--var-light] hover:bg-[--var-hover-dark-shades]"
@@ -79,11 +68,6 @@ function Login() {
           </p>
         </div>
       </article>
-      <img
-        className="w-2/3 h-full object-cover rounded-xl"
-        src={image}
-        alt="Un hombre atiende a unos clientes en una agencia de viajes"
-      />
     </main>
   );
 }
